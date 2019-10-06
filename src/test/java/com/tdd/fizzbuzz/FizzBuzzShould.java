@@ -17,15 +17,23 @@ import org.junit.Test;
 
 public class FizzBuzzShould {
 
+	private FizzBuzz fizzbuzz;
+
 	@Before
 	public void setUp() throws Exception {
+		fizzbuzz = new FizzBuzz();
 	}
 
 	@Test
-	public void test() {
-		FizzBuzz fizzbuzz = new FizzBuzz();
+	public void returnsTheSameNumberForRestNumbers () {
 		
 		assertEquals("1", fizzbuzz.getResult(1));
+	}
+	
+	@Test
+	public void returnsFizzForNumberDivisibleByThree() {
+		
+		assertEquals("Fizz", fizzbuzz.getResult(3));
 	}
 
 }

@@ -13,17 +13,26 @@ package com.tdd.fizzbuzz;
 import spock.lang.Specification
 
 public class FizzBuzzSpec extends Specification{
+	private FizzBuzz fizzBuzz
 	
 	def setup() {
-		
+		fizzBuzz = new FizzBuzz();
 	}
 	
 	def "return the same number back"(){
 		given: ""
-			FizzBuzz fizzBuzz = new FizzBuzz();
 		when: "FizzBuzz.getResult is called"
 			def  result = fizzBuzz.getResult(1)
 		then: "result should be same"
 			result == "1"
+	}
+	
+	def "returns Fizz For Number Divisible By Three"(){
+		given: "A Number input divisible by 3"
+			def number=3
+		when: "FizzBuzz.getResult is called"
+			def  result = fizzBuzz.getResult(number)
+		then: "result should be Fizz"
+			result == "Fizz"
 	}
 }
