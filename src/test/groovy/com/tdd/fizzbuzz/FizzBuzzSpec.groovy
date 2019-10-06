@@ -40,8 +40,8 @@ public class FizzBuzzSpec extends Specification{
 			6		| _
 	}
 	
-	def "returns Buzz For Number Divisible By Three"(){
-		given: "A Number input divisible by 3"
+	def "returns Buzz For Number Divisible By Five"(){
+		given: "A Number input divisible by 5"
 
 		when: "FizzBuzz.getResult is called"
 			def  result = fizzBuzz.getResult(number)
