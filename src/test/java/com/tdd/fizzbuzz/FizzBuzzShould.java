@@ -31,10 +31,17 @@ public class FizzBuzzShould {
 	}
 	
 	@Test
-	public void returnsFizzForNumberDivisibleByThree() {
+	public void returnsFizzForNumberDivisibleByThree () {
 		
 		assertEquals("Fizz", fizzbuzz.getResult(3));
 		assertEquals("Fizz", fizzbuzz.getResult(6));
+	}
+
+	@Test
+	public void returnsBuzzForNumberDivisibleByFive () {
+		
+		assertEquals("Buzz", fizzbuzz.getResult(5));
+		assertEquals("Buzz", fizzbuzz.getResult(10));
 	}
 
 }
