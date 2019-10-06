@@ -23,12 +23,6 @@ public class FizzBuzzShould {
 	public void setUp() throws Exception {
 		fizzbuzz = new FizzBuzz();
 	}
-
-	@Test
-	public void returnsTheSameNumberForRestNumbers () {
-		
-		assertEquals("1", fizzbuzz.getResult(1));
-	}
 	
 	@Test
 	public void returnsFizzForNumberDivisibleByThree () {
@@ -49,5 +43,12 @@ public class FizzBuzzShould {
 		
 		assertEquals("FizzBuzz", fizzbuzz.getResult(15));
 		assertEquals("FizzBuzz", fizzbuzz.getResult(30));
+	}
+
+	@Test
+	public void returnsTheSameNumberForRestNumbers () {
+		
+		assertEquals("1", fizzbuzz.getResult(1));
+		assertEquals("2", fizzbuzz.getResult(2));
 	}
 }

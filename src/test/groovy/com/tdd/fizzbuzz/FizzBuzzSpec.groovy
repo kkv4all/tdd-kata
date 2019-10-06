@@ -19,13 +19,6 @@ public class FizzBuzzSpec extends Specification{
 		fizzBuzz = new FizzBuzz();
 	}
 	
-	def "return the same number back"(){
-		given: ""
-		when: "FizzBuzz.getResult is called"
-			def  result = fizzBuzz.getResult(1)
-		then: "result should be same"
-			result == "1"
-	}
 	
 	def "returns Fizz For Number Divisible By Three"(){
 		given: "A Number input divisible by 3"
@@ -64,5 +57,18 @@ public class FizzBuzzSpec extends Specification{
 			number	| _
 			15		| _
 			30		| _
+	}
+
+	def "return the same number back"(){
+		given: "A Number input not divisible by 3 or 5"
+		when: "FizzBuzz.getResult is called"
+			def  result = fizzBuzz.getResult(number)
+		then: "result should be same"
+			result == expected
+		where: "Numbers are"
+			number	|	expected
+			1		|	"1"
+			2		|	"2"
+		
 	}
 }
