@@ -34,6 +34,7 @@ public class FizzBuzzShould {
 	public void returnsFizzForNumberDivisibleByThree() {
 		
 		assertEquals("Fizz", fizzbuzz.getResult(3));
+		assertEquals("Fizz", fizzbuzz.getResult(6));
 	}
 
 }

@@ -29,10 +29,14 @@ public class FizzBuzzSpec extends Specification{
 	
 	def "returns Fizz For Number Divisible By Three"(){
 		given: "A Number input divisible by 3"
-			def number=3
+
 		when: "FizzBuzz.getResult is called"
 			def  result = fizzBuzz.getResult(number)
 		then: "result should be Fizz"
 			result == "Fizz"
+		where: "numbers are"
+			number	| _
+			3		| _
+			6		| _
 	}
 }
