@@ -52,4 +52,17 @@ public class FizzBuzzSpec extends Specification{
 			5		| _
 			10		| _
 	}
+	
+	def "returns FizzBuzz For Number Divisible By Three and Five"(){
+		given: "A Number input divisible by 3 & 5"
+
+		when: "FizzBuzz.getResult is called"
+			def  result = fizzBuzz.getResult(number)
+		then: "result should be FizzBuzz"
+			result == "FizzBuzz"
+		where: "numbers are"
+			number	| _
+			15		| _
+			30		| _
+	}
 }
