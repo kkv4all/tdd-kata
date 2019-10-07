@@ -48,6 +48,21 @@ class TripServiceSpec extends Specification {
 			NO_TRIP == list
 	}
 	
+	def "return Trips if User is Friend" () {
+		given:""
+			User friend = new User();
+			friend.addFriend(ANOTHER_USER);
+			friend.addFriend(loggedInUser);
+			friend.addTrip(UDAYPUR);
+			friend.addTrip(SIMLA);
+			
+			loggedInUser = REGISTERED_USER;
+		when:
+			def list = tripService.getTripsByUser(friend);
+		then: "return no trip"
+			friend.trips == list
+	}
+	
 	class TripServiceSeam extends TripService {
 		protected User getUserSession() {
 			return loggedInUser;

@@ -29,6 +29,7 @@ public class TripServiceShould {
 	@Before
 	public void setUp() throws Exception {
 		tripService = new TripServiceSeam();
+		loggedInUser = REGISTERED_USER;
 	}
 
 	@Test(expected = UserNotLoggedInException.class)
@@ -44,12 +45,23 @@ public class TripServiceShould {
 		notFriend.addFriend(ANOTHER_USER);
 		notFriend.addTrip(UDAYPUR);
 		notFriend.addTrip(SIMLA);
-		
-		loggedInUser = REGISTERED_USER;
-		
+
 		List<Trip> list = tripService.getTripsByUser(notFriend);
 		
 		assertEquals(NO_TRIP, list);
+	}
+	
+	@Test
+	public void returnTripsIfUserIsFriend() throws Exception {
+		User friend = new User();
+		friend.addFriend(ANOTHER_USER);
+		friend.addFriend(loggedInUser);
+		friend.addTrip(UDAYPUR);
+		friend.addTrip(SIMLA);
+		
+		List<Trip> list = tripService.getTripsByUser(friend);
+		
+		assertEquals(friend.trips(), list);
 	}
 	
 
