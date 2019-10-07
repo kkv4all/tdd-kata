@@ -7,16 +7,22 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import com.tdd.tripkata.exception.UserNotLoggedInException;
 import com.tdd.tripkata.user.User;
 import com.tdd.tripkata.user.UserBuilder;
 
+@RunWith(MockitoJUnitRunner.class)
 public class TripServiceShould {
 
 	private TripService tripService;
 
 	private User loggedInUser;
+
 	private static final User GUEST = null;
 	private static final User ANOTHER_USER = new User();
 	private static final User REGISTERED_USER = new User();
@@ -25,11 +31,12 @@ public class TripServiceShould {
 	private static final Trip SIMLA = new Trip();
 	
 	private static final List<Trip> NO_TRIP = new ArrayList<Trip>();
-
+	@Mock
+	private TripDAO tripDAO;
 
 	@Before
 	public void setUp() throws Exception {
-		tripService = new TripServiceSeam();
+		tripService = new TripService(tripDAO);
 		loggedInUser = REGISTERED_USER;
 	}
 
@@ -58,16 +65,11 @@ public class TripServiceShould {
 				.friendsWith(ANOTHER_USER,loggedInUser)
 				.hasTripsTo(UDAYPUR,SIMLA)
 				.build();
+		Mockito.when(tripDAO.tripsBy(friend)).thenReturn(friend.trips());
 		
 		List<Trip> list = tripService.getTripsByUser(friend,loggedInUser);
 		
 		assertEquals(friend.trips(), list);
 	}
-	
 
-	class TripServiceSeam extends TripService {
-		protected List<Trip> tripsBy(User user) {
-			return user.trips();
-		}
-	}
 }

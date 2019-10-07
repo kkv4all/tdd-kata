@@ -9,4 +9,8 @@ public class TripDAO {
 	public static List<Trip> findTripsByUser(User user) {
 		return null;
 	}
+
+	public List<Trip> tripsBy(User user) {
+		return findTripsByUser(user);
+	}
 }

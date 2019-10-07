@@ -2,11 +2,13 @@ package com.tdd.tripkata.trip
 
 import static org.junit.Assert.assertEquals
 
+import org.omg.CORBA.FREE_MEM
+
 import com.tdd.tripkata.exception.UserNotLoggedInException
 import com.tdd.tripkata.user.User
 
 import spock.lang.Specification
-
+            
 class TripServiceSpec extends Specification {
 	
 	private TripService tripService;
@@ -21,8 +23,10 @@ class TripServiceSpec extends Specification {
 
 	private static final List<Trip> NO_TRIP = new ArrayList<Trip>();
 	
+	private TripDAO tripDAO = Mock();
+	
 	def setup() {
-		tripService = new TripServiceSeam();
+		tripService = new TripService(tripDAO);
 		loggedInUser = REGISTERED_USER;
 	}
 	
@@ -54,19 +58,10 @@ class TripServiceSpec extends Specification {
 			friend.addFriend(loggedInUser);
 			friend.addTrip(UDAYPUR);
 			friend.addTrip(SIMLA);
+			tripDAO.tripsBy(friend) >> friend.trips()
 		when:
 			def list = tripService.getTripsByUser(friend,loggedInUser);
 		then: "return friend's trip"
 			friend.trips() == list
-	}
-	
-	class TripServiceSeam extends TripService {
-		protected User getUserSession() {
-			return loggedInUser;
-		}
-		
-		protected List<Trip> tripsBy(User user) {
-			return user.trips();
-		}
 	}
 }
