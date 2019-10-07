@@ -69,5 +69,9 @@ public class TripServiceShould {
 		protected User getUserSession() {
 			return loggedInUser;
 		}
+		
+		protected List<Trip> tripsBy(User user) {
+			return user.trips();
+		}
 	}
 }

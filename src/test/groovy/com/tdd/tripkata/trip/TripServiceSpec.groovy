@@ -23,6 +23,7 @@ class TripServiceSpec extends Specification {
 	
 	def setup() {
 		tripService = new TripServiceSeam();
+		loggedInUser = REGISTERED_USER;
 	}
 	
 	def "throw Exception if user not LoggedIn" () {
@@ -40,8 +41,6 @@ class TripServiceSpec extends Specification {
 			notFriend.addFriend(ANOTHER_USER);
 			notFriend.addTrip(UDAYPUR);
 			notFriend.addTrip(SIMLA);
-			
-			loggedInUser = REGISTERED_USER;
 		when:
 			def list = tripService.getTripsByUser(notFriend);
 		then: "return no trip"
@@ -55,17 +54,19 @@ class TripServiceSpec extends Specification {
 			friend.addFriend(loggedInUser);
 			friend.addTrip(UDAYPUR);
 			friend.addTrip(SIMLA);
-			
-			loggedInUser = REGISTERED_USER;
 		when:
 			def list = tripService.getTripsByUser(friend);
-		then: "return no trip"
-			friend.trips == list
+		then: "return friend's trip"
+			friend.trips() == list
 	}
 	
 	class TripServiceSeam extends TripService {
 		protected User getUserSession() {
 			return loggedInUser;
+		}
+		
+		protected List<Trip> tripsBy(User user) {
+			return user.trips();
 		}
 	}
 }
