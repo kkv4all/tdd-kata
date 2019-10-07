@@ -27,10 +27,5 @@ public class TripService {
 
 	protected List<Trip> tripsBy(User user) {
 		return TripDAO.findTripsByUser(user);
-	}
-
-	protected User getUserSession() {
-		return UserSession.getInstance().getLoggedUser();
-	}
-	
+	}	
 }

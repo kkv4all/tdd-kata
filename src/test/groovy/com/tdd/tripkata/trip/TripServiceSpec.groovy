@@ -30,7 +30,7 @@ class TripServiceSpec extends Specification {
 		given:""
 			loggedInUser=GUEST;
 		when:
-			tripService.getTripsByUser(null);
+			tripService.getTripsByUser(null,loggedInUser);
 		then: "UserNotLoggedInException is thorwn"
 			thrown(UserNotLoggedInException.class)
 	}
@@ -42,7 +42,7 @@ class TripServiceSpec extends Specification {
 			notFriend.addTrip(UDAYPUR);
 			notFriend.addTrip(SIMLA);
 		when:
-			def list = tripService.getTripsByUser(notFriend);
+			def list = tripService.getTripsByUser(notFriend,loggedInUser);
 		then: "return no trip"
 			NO_TRIP == list
 	}
@@ -55,7 +55,7 @@ class TripServiceSpec extends Specification {
 			friend.addTrip(UDAYPUR);
 			friend.addTrip(SIMLA);
 		when:
-			def list = tripService.getTripsByUser(friend);
+			def list = tripService.getTripsByUser(friend,loggedInUser);
 		then: "return friend's trip"
 			friend.trips() == list
 	}
