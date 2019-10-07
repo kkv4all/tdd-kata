@@ -12,14 +12,18 @@ public class TripService {
 	public List<Trip> getTripsByUser(User user) throws UserNotLoggedInException {
 		List<Trip> tripList = new ArrayList<Trip>();
 		User loggedUser = getUserSession();
-		if (loggedUser == null) {
-			throw new UserNotLoggedInException();
-		}
+		validateUser(loggedUser);
 
 		if (user.isFriendsWith(loggedUser)) {
 			tripList = tripsBy(user);
 		}
 		return tripList;
+	}
+
+	protected void validateUser(User loggedUser) {
+		if (loggedUser == null) {
+			throw new UserNotLoggedInException();
+		}
 	}
 
 	protected List<Trip> tripsBy(User user) {
