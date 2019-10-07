@@ -24,4 +24,13 @@ public class User {
 	public List<Trip> trips() {
 		return trips;
 	}
+	
+	public boolean isFriendsWith(User user) {
+		for (User friend : getFriends()) {
+			if (friend.equals(user)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
