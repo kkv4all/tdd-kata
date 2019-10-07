@@ -75,7 +75,8 @@ There are two camps are commonly referred to as the Detroit School of TDD (or Cl
 --------------------------------------------------------------------------------------------------------------------------------------
 ```
 ## What is Kata?
-    Kata is a Japanese word meaning _"form"_, and in the martial arts it describes a choreographed pattern of movements used to train yourself to the level of muscle memory.
+   Kata is a Japanese word meaning _"form"_, and in the martial arts it describes a choreographed pattern of movements used to train yourself to the level of muscle memory.
+   
 - Originally coined by Dave Thomas, co-author of Book [The Pragmatic Programmer: From Journeyman to Master| ]. 
 - The idea is the same as in martial arts, practice and repetition to sharpen the skills.
 - One of the reason TDD id hard for new learner is to implement it in real code right way after learning.
