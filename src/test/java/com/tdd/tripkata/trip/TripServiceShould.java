@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import com.tdd.tripkata.exception.UserNotLoggedInException;
 import com.tdd.tripkata.user.User;
+import com.tdd.tripkata.user.UserBuilder;
 
 public class TripServiceShould {
 
@@ -41,10 +42,10 @@ public class TripServiceShould {
 	
 	@Test
 	public void returnNoTripIfUserIsNotFriend() throws Exception {
-		User notFriend = new User();
-		notFriend.addFriend(ANOTHER_USER);
-		notFriend.addTrip(UDAYPUR);
-		notFriend.addTrip(SIMLA);
+		User notFriend = UserBuilder.aUser()
+				.friendsWith(ANOTHER_USER)
+				.hasTripsTo(UDAYPUR,SIMLA)
+				.build();
 
 		List<Trip> list = tripService.getTripsByUser(notFriend);
 		
@@ -53,11 +54,10 @@ public class TripServiceShould {
 	
 	@Test
 	public void returnTripsIfUserIsFriend() throws Exception {
-		User friend = new User();
-		friend.addFriend(ANOTHER_USER);
-		friend.addFriend(loggedInUser);
-		friend.addTrip(UDAYPUR);
-		friend.addTrip(SIMLA);
+		User friend = UserBuilder.aUser()
+				.friendsWith(ANOTHER_USER,loggedInUser)
+				.hasTripsTo(UDAYPUR,SIMLA)
+				.build();
 		
 		List<Trip> list = tripService.getTripsByUser(friend);
 		
