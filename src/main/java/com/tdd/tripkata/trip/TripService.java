@@ -9,9 +9,8 @@ import com.tdd.tripkata.user.UserSession;
 
 public class TripService {
 
-	public List<Trip> getTripsByUser(User user) throws UserNotLoggedInException {
+	public List<Trip> getTripsByUser(User user, User loggedUser) throws UserNotLoggedInException {
 		List<Trip> tripList = new ArrayList<Trip>();
-		User loggedUser = getUserSession();
 		validateUser(loggedUser);
 
 		if (user.isFriendsWith(loggedUser)) {

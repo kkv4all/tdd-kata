@@ -37,7 +37,7 @@ public class TripServiceShould {
 	public void throwExceptionifNotLoggedIn() {
 		loggedInUser=GUEST;
 		
-		tripService.getTripsByUser(null);
+		tripService.getTripsByUser(null,loggedInUser);
 	}
 	
 	@Test
@@ -47,7 +47,7 @@ public class TripServiceShould {
 				.hasTripsTo(UDAYPUR,SIMLA)
 				.build();
 
-		List<Trip> list = tripService.getTripsByUser(notFriend);
+		List<Trip> list = tripService.getTripsByUser(notFriend,loggedInUser);
 		
 		assertEquals(NO_TRIP, list);
 	}
@@ -59,17 +59,13 @@ public class TripServiceShould {
 				.hasTripsTo(UDAYPUR,SIMLA)
 				.build();
 		
-		List<Trip> list = tripService.getTripsByUser(friend);
+		List<Trip> list = tripService.getTripsByUser(friend,loggedInUser);
 		
 		assertEquals(friend.trips(), list);
 	}
 	
 
 	class TripServiceSeam extends TripService {
-		protected User getUserSession() {
-			return loggedInUser;
-		}
-		
 		protected List<Trip> tripsBy(User user) {
 			return user.trips();
 		}
