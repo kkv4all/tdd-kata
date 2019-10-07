@@ -18,17 +18,18 @@ public class UserShould {
 
 	@Test
 	public void returnTrueIfUserIsFriend() {
-		User friend = new User();
-		friend.addFriend(ANOTHER_USER);
-		friend.addFriend(user);
+		User friend = UserBuilder.aUser()
+				.friendsWith(ANOTHER_USER,user)
+				.build();
 		
 		assertTrue(friend.isFriendsWith(user)); 
 	}
 	
 	@Test
 	public void returnFalseIfUserIsNotFriend() {
-		User notFriend = new User();
-		notFriend.addFriend(ANOTHER_USER);
+		User notFriend = UserBuilder.aUser()
+				.friendsWith(ANOTHER_USER)
+				.build();
 		
 		assertFalse(notFriend.isFriendsWith(user)); 
 	}

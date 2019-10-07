@@ -15,7 +15,7 @@ class UserSpec extends Specification {
 		given:""
 			User friend = UserBuilder.aUser()
 				.friendsWith(ANOTHER_USER,user)
-				.build()
+				.build();
 		when:
 			def result = friend.isFriendsWith(user);
 		then: "return TRUE"
@@ -26,7 +26,7 @@ class UserSpec extends Specification {
 		given:""
 			User notFriend = UserBuilder.aUser()
 				.friendsWith(ANOTHER_USER)
-				.build()
+				.build();
 		when:
 			def result = notFriend.isFriendsWith(user);
 		then: "return FALSE"

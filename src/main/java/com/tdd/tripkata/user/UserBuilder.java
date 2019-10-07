@@ -22,8 +22,10 @@ public class UserBuilder{
 	
 	public User build() {
 		User user = new User();
-		addFriendsToUser(user);
-		addTripsToUser(user);
+		if(friends!=null)
+			addFriendsToUser(user);
+		if(trips!=null)
+			addTripsToUser(user);
 		return user;
 	}
 
