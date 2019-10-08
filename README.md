@@ -1,7 +1,9 @@
 # Test Driven Development though Kata
 
 ## Introduction
+This repository has coding practices done to learn the TDD (Test Driven Development) with popular way of learning through Kata. Test cases are available in JUnit and [Spock](http://spockframework.org) and code is in Java.
 
+## What is TDD?
 The **Test Driven Development** (TDD) is a software engineering practice that requires unit tests to be written before the code they are supposed to validate. Coming from the Agile world in which it is a basic practice of the Extreme programming (XP) method, TDD is nowadays recognized as a discipline in its own right that is also used outside the agile context.
 
 **Each iteration in TDD has Three Stages:**
